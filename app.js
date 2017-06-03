@@ -3,15 +3,15 @@ const TodoForm = ({addTodo}) => {
     let input;
     
     return (
-    <div class="input-group">
+    <div className="input-group">
         <input ref={node => {
             input = node;
-        }} type="text" class="form-control" />
-        <span class="input-group-btn">
+        }} type="text" className="form-control" />
+        <span className="input-group-btn">
             <button onClick={() => {
                 addTodo(input.value);
                 input.value = '';
-              }} class="btn btn-primary">
+              }} className="btn btn-primary">
                 +
             </button>
         </span>
