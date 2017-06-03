@@ -12,7 +12,7 @@ const TodoForm = ({addTodo}) => {
                 addTodo(input.value);
                 input.value = '';
               }} className="btn btn-primary">
-                +
+                Add task
             </button>
         </span>
     </div>
@@ -21,7 +21,12 @@ const TodoForm = ({addTodo}) => {
 
 const Todo = ({todo, remove}) => {
     // Each todo
-    return (<li onClick={() => {remove(todo.id)}}>{todo.text}</li>);
+    return (
+        <a onClick={() => {remove(todo.id)}} className="list-group-item">
+            <span className="glyphicon glyphicon-ok-circle todo-check" aria-hidden="true"></span>
+            {todo.text}
+        </a>
+    );
 };
 
 const TodoList = ({todos, remove}) => {
@@ -29,14 +34,14 @@ const TodoList = ({todos, remove}) => {
     const todoNode = todos.map((todo) => {
        return (<Todo todo={todo} key={todo.id} remove={remove} />); 
     });
-    return (<ul>{todoNode}</ul>);
+    return (<ul className="list-group">{todoNode}</ul>);
 };
 
-const Title = () => {
+const Title = ({todoCount}) => {
     return (
         <div>
             <div>
-                <h1>to-do</h1>
+                <h1>to-do <span className="badge">{todoCount}</span></h1>
             </div>
         </div>
     );
@@ -77,7 +82,7 @@ class TodoApp extends React.Component{
         // Render JSX
         return (
             <div>
-                <Title />
+                <Title todoCount={this.state.data.length} />
                 <TodoForm addTodo={this.addTodo.bind(this)} />
                 <TodoList todos={this.state.data} remove={this.handleRemove.bind(this)} />
             </div>
