@@ -3,16 +3,18 @@ const TodoForm = ({addTodo}) => {
     let input;
     
     return (
-    <div>
-      <input ref={node => {
-        input = node;
-      }} />
-      <button onClick={() => {
-        addTodo(input.value);
-        input.value = '';
-      }}>
-        +
-      </button>
+    <div class="input-group">
+        <input ref={node => {
+            input = node;
+        }} type="text" class="form-control" />
+        <span class="input-group-btn">
+            <button onClick={() => {
+                addTodo(input.value);
+                input.value = '';
+              }} class="btn btn-primary">
+                +
+            </button>
+        </span>
     </div>
   );
 };
