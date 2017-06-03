@@ -6,9 +6,13 @@
     font-size: 150%;
 }
 
-.todo-check {
-    color: #DDD;
+a.todo-check {
+    color: #dddddd;
     top: 5px;
     font-size: 125%;
     padding-right: 10px;
+}
+
+a.todo-check:hover {
+    color: #d9230f;
 }
