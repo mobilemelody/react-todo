@@ -3,16 +3,18 @@
 }
 
 .todo-item {
-    font-size: 150%;
+    font-size: 125%;
 }
 
 a.todo-check {
     color: #dddddd;
     top: 5px;
-    font-size: 125%;
+    font-size: 150%;
     padding-right: 10px;
 }
 
 a.todo-check:hover {
-    color: #d9230f;
+    color: #2780e3;
+    text-decoration: none;
+    cursor: pointer;
 }
