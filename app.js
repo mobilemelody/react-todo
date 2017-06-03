@@ -58,15 +58,27 @@ class TodoApp extends React.Component{
         this.state = {
             data: []
         }
+        this.apiUrl = 'http://59331b4766fd6e0011df0d21.mockapi.io/todos'
+    }
+    // Lifecycle method
+    componentDidMount() {
+        // Make HTTP request with Axios
+        axios.get(this.apiUrl)
+            .then((res) => {
+                // Set state with result
+                this.setState({ data: res.data });
+        });
     }
     // Add todo handler
     addTodo(val){
         // Assemble data
-        const todo = {text: val, id: window.id++}
+        const todo = {text: val}
         // Update data
-        this.state.data.push(todo);
-        // Update state
-        this.setState({data: this.state.data});
+        axios.post(this.apiUrl, todo)
+            .then((res) => {
+                this.state.data.push(res.data);
+                this.setState({ data: this.state.data });
+        });
     }
     // Handle remove
     handleRemove(id){
@@ -75,7 +87,10 @@ class TodoApp extends React.Component{
             if (todo.id !== id) return todo;
         });
         // Update state with filter
-        this.setState({data: remainder});
+        axios.delete(this.apiUrl+'/'+id)
+            .then((res) => {
+                this.setState({data: remainder});
+        });
     }
     
     render() {
