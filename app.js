@@ -3,7 +3,7 @@ const TodoForm = ({addTodo}) => {
     let input;
     
     return (
-    <div className="input-group">
+    <div className="input-group add-task">
         <input ref={node => {
             input = node;
         }} type="text" className="form-control" />
@@ -22,10 +22,10 @@ const TodoForm = ({addTodo}) => {
 const Todo = ({todo, remove}) => {
     // Each todo
     return (
-        <a onClick={() => {remove(todo.id)}} className="list-group-item">
-            <span className="glyphicon glyphicon-ok-circle todo-check" aria-hidden="true"></span>
+        <li className="list-group-item todo-item">
+            <a onClick={() => {remove(todo.id)}} className="glyphicon glyphicon-ok-circle todo-check" aria-hidden="true"></a>
             {todo.text}
-        </a>
+        </li>
     );
 };
 
