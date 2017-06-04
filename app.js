@@ -1,6 +1,5 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-import css from './styles.css';
 
 const TodoForm = ({addTodo}) => {
     // Input tracker
