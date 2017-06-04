@@ -4,20 +4,23 @@ const ReactDOM = require('react-dom');
 const TodoForm = ({addTodo}) => {
     // Input tracker
     let input;
+    let dueDate;
     
     return (
-    <div className="input-group add-task">
-        <input ref={node => {
+    <div className="row add-task">
+        <div className="col-md-6"><input ref={node => {
             input = node;
-        }} type="text" className="form-control" />
-        <span className="input-group-btn">
-            <button onClick={() => {
-                addTodo(input.value);
-                input.value = '';
-              }} className="btn btn-primary">
-                Add task
-            </button>
-        </span>
+        }} type="text" className="form-control" /></div>
+        <div className="col-md-4"><input ref={node => {
+            dueDate = node;
+        }} type="text" className="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-format="M d" /></div>
+        <div className="col-md-2"><button onClick={() => {
+            addTodo(input.value, dueDate.value);
+            input.value = '';
+            dueDate.value = '';
+          }} type="submit" className="btn btn-primary">
+            Add task
+        </button></div>
     </div>
   );
 };
@@ -25,10 +28,13 @@ const TodoForm = ({addTodo}) => {
 const Todo = ({todo, remove}) => {
     // Each todo
     return (
-        <li className="list-group-item todo-item">
-            <a onClick={() => {remove(todo.id)}} className="glyphicon glyphicon-ok-circle todo-check" aria-hidden="true"></a>
-            {todo.text}
-        </li>
+        <div className="row todo-item">
+            <div className="col-md-8 task-wrapper">
+                <span onClick={() => {remove(todo.id)}} className="todo-check"><span className="glyphicon glyphicon-ok checkmark"></span></span>
+                <span className="task-title">{todo.text}</span>
+            </div>
+            <div className="col-md-4 task-due-date">{todo.date}</div>
+        </div>
     );
 };
 
@@ -73,9 +79,9 @@ class TodoApp extends React.Component{
         });
     }
     // Add todo handler
-    addTodo(val){
+    addTodo(val, dueDate){
         // Assemble data
-        const todo = {text: val}
+        const todo = {text: val, date: dueDate};
         // Update data
         axios.post(this.apiUrl, todo)
             .then((res) => {

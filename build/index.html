@@ -8,6 +8,15 @@
         <!-- Bootswatch CSS -->
         <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-h21C2fcDk/eFsW9sC9h0dhokq5pDinLNklTKoxIZRUn3+hvmgQSffLLQ4G4l2eEr" crossorigin="anonymous">
         
+        <!-- jQuery + jQuery UI -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        
+        <!-- Bootstrap datepicker -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+        
     </head>
     
     <body>
@@ -17,6 +26,11 @@
         </div>
         
         <script src="https://npmcdn.com/axios/dist/axios.min.js"></script>
+        <script>
+            $('.datepicker').datepicker({
+               format: 'M d' 
+            });
+        </script>
         
     <script type="text/javascript" src="bundle.js"></script></body>
 </html>

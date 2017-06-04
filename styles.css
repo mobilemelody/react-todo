@@ -3,18 +3,45 @@
 }
 
 .todo-item {
-    font-size: 125%;
+    padding: 10px 0;
+    border-bottom: 1px solid #dddddd;
 }
 
-a.todo-check {
-    color: #dddddd;
-    top: 5px;
-    font-size: 150%;
-    padding-right: 10px;
-}
+    .todo-item .todo-check {
+        position: relative;
+        display: inline-block;
+        border: 1px solid #dddddd;
+        width: 22px;
+        height: 22px;
+        border-radius: 15px;
+    }
 
-a.todo-check:hover {
-    color: #2780e3;
-    text-decoration: none;
-    cursor: pointer;
-}
+        .todo-item .todo-check .checkmark {
+            color: #ffffff;
+            position: relative;
+            top: 4px;
+            left: 4px;
+            font-size: 83%;
+            
+        }
+
+    .todo-item .todo-check:hover {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+        .todo-item .todo-check:hover .checkmark {
+            color: #dddddd;
+        }
+
+    .todo-item .task-title {
+        padding-left: 10px;
+        position: relative;
+        top: 3px;
+    }
+
+    .todo-item .task-due-date {
+        text-align: right;
+        font-size: 80%;
+        line-height: 27px;
+    }

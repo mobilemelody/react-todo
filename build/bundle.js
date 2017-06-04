@@ -9533,22 +9533,35 @@ const ReactDOM = __webpack_require__(80);
 const TodoForm = ({ addTodo }) => {
     // Input tracker
     let input;
+    let dueDate;
 
     return React.createElement(
         'div',
-        { className: 'input-group add-task' },
-        React.createElement('input', { ref: node => {
-                input = node;
-            }, type: 'text', className: 'form-control' }),
+        { className: 'row add-task' },
         React.createElement(
-            'span',
-            { className: 'input-group-btn' },
+            'div',
+            { className: 'col-md-6' },
+            React.createElement('input', { ref: node => {
+                    input = node;
+                }, type: 'text', className: 'form-control' })
+        ),
+        React.createElement(
+            'div',
+            { className: 'col-md-4' },
+            React.createElement('input', { ref: node => {
+                    dueDate = node;
+                }, type: 'text', className: 'form-control datepicker' })
+        ),
+        React.createElement(
+            'div',
+            { className: 'col-md-2' },
             React.createElement(
                 'button',
                 { onClick: () => {
-                        addTodo(input.value);
+                        addTodo(input.value, dueDate.value);
                         input.value = '';
-                    }, className: 'btn btn-primary' },
+                        dueDate.value = '';
+                    }, type: 'submit', className: 'btn btn-primary' },
                 'Add task'
             )
         )
@@ -9558,12 +9571,29 @@ const TodoForm = ({ addTodo }) => {
 const Todo = ({ todo, remove }) => {
     // Each todo
     return React.createElement(
-        'li',
-        { className: 'list-group-item todo-item' },
-        React.createElement('a', { onClick: () => {
-                remove(todo.id);
-            }, className: 'glyphicon glyphicon-ok-circle todo-check', 'aria-hidden': 'true' }),
-        todo.text
+        'div',
+        { className: 'row todo-item' },
+        React.createElement(
+            'div',
+            { className: 'col-md-8 task-wrapper' },
+            React.createElement(
+                'span',
+                { onClick: () => {
+                        remove(todo.id);
+                    }, className: 'todo-check' },
+                React.createElement('span', { className: 'glyphicon glyphicon-ok checkmark' })
+            ),
+            React.createElement(
+                'span',
+                { className: 'task-title' },
+                todo.text
+            )
+        ),
+        React.createElement(
+            'div',
+            { className: 'col-md-4 task-due-date' },
+            todo.date
+        )
     );
 };
 
@@ -9622,11 +9652,11 @@ class TodoApp extends React.Component {
         });
     }
     // Add todo handler
-    addTodo(val) {
+    addTodo(val, dueDate) {
         // Assemble data
-        const todo = { text: val
-            // Update data
-        };axios.post(this.apiUrl, todo).then(res => {
+        const todo = { text: val, date: dueDate };
+        // Update data
+        axios.post(this.apiUrl, todo).then(res => {
             this.state.data.push(res.data);
             this.setState({ data: this.state.data });
         });
