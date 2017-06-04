@@ -1,3 +1,6 @@
+const React = require('react');
+const ReactDOM = require('react-dom');
+
 const TodoForm = ({addTodo}) => {
     // Input tracker
     let input;
