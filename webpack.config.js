@@ -14,11 +14,11 @@ const HtmlCopyWebpackPluginConfig = new CopyWebpackPlugin([
 module.exports = {
     entry: __dirname + '/app.js',
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                use: { loader: 'babel-loader' }
             }
         ]
     },
